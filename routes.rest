@@ -1,0 +1,33 @@
+//LOCAL HOST
+### GET ALL CONTACTS
+GET http://localhost:3000/contacts
+
+### GET CONTACT BY ID
+GET http://localhost:3000/contacts/6826349d163fdddbe2723ae6
+
+### CREATE CONTACT
+POST http://localhost:3000/contacts http/1.1
+Content-Type: application/json
+
+{
+  "firstName": "Itoro",
+    "lastName": "Etim",
+    "email": "gessien3@byupathway.edu",
+    "favoriteColor": "black",
+    "birthday": "1998-08-12"
+}
+
+### UPDATE CONTACT
+PUT http://localhost:3000/contacts/682f62bb1a0b6e38736b12e1
+Content-Type: application/json
+
+{
+  "firstName": "I HAVE CHANGED",
+    "lastName": "Etim",
+    "email": "gessien3@byupathway.edu",
+    "favoriteColor": "black",
+    "birthday": "1998-08-12"
+}
+
+### DELETE CONTACT
+DELETE http://localhost:3000/contacts/682f62bb1a0b6e38736b12e1

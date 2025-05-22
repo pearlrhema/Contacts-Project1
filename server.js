@@ -4,10 +4,13 @@ const contactRoutes = require("./routes/contacts");
 const baseRoute = require("./routes/index");
 
 const mongodb  = require("./data/database");
+const bodyParser = require('body-parser');
 // const baseRoute = require("./routes/index");
 
 const port = process.env.PORT || 3000;
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/contacts", contactRoutes);
 app.use("/", baseRoute); 
 
