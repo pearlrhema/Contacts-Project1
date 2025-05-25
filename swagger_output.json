@@ -5,7 +5,7 @@
     "description": "API for managing contacts",
     "version": "1.0.0"
   },
-  "host": "https://contacts-project1-m80e.onrender.com",
+  "host": "contacts-project1-m80e.onrender.com",
   "basePath": "/",
   "schemes": [
     "https"
