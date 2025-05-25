@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
-const contactRoutes = require("./routes/contacts");
-const baseRoute = require("./routes/index");
+// const contactRoutes = require("./routes/contacts");
+// const baseRoute = require("./routes/index");
 
 const mongodb  = require("./data/database");
 const bodyParser = require('body-parser');
@@ -18,8 +18,8 @@ app.use((req, res, next) => {
   next();
 });
 // app.use(bodyParser.urlencoded({ extended: true }));
-app.use("/contacts", contactRoutes);
-app.use("/", baseRoute); 
+// app.use("/contacts", contactRoutes);
+app.use("/", require("./routes")); 
 
 
 mongodb.initDb((err) => {

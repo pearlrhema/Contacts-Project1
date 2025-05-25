@@ -5,9 +5,9 @@
 
 const router = require('express').Router();
 
-const getAllContacts = require('../controllers/contacts').getAllContacts;
+// const getAllContacts = require('../controllers/contacts').getAllContacts;
 
-const createContact = require('../controllers/contacts').createContact;
+// const createContact = require('../controllers/contacts').createContact;
 
 // const contacts = require('./contacts');
 
@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
   res.send('CSE341 - Godwin Essien Contacts Project');
 });
 
-// router.use('/contacts', getAllContacts);
+router.use('/contacts', require('./contacts'));
 
 // router.use('/createContacts', createContact);
 

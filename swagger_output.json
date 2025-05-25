@@ -5,14 +5,36 @@
     "description": "API for managing contacts",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "https://contacts-project1-m80e.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http",
     "https"
   ],
   "paths": {
-    "/contacts": {
+    "/": {
+      "get": {
+        "tags": [
+          "Godwin Essien Contacts Project"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api-docs": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/contacts/": {
       "get": {
         "tags": [
           "Contacts"
