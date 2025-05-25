@@ -3,6 +3,8 @@ const ObjectId = require('mongodb').ObjectId;
 
 // GET all contacts
 const getAllContacts = async (req, res) => {
+  // #swagger.tags = ['Contacts'];
+  // #swagger.description = 'Get all contacts'
   const result = await mongodb.getdatabase().db().collection("Contacts").find();
   result.toArray().then((contacts) => {
     res.setHeader('Content-Type', 'application/json');
@@ -12,6 +14,8 @@ const getAllContacts = async (req, res) => {
 
 // GET contact by ID
 const getContactById = async (req, res) => {
+  // #swagger.tags = ['Contacts'];
+  // #swagger.description = 'Get contact by ID'
   const contactId = req.params.id;
   if (!ObjectId.isValid(contactId)) {
     return res.status(400).json({ error: 'Invalid contact ID format' });
@@ -30,6 +34,8 @@ const getContactById = async (req, res) => {
 
 // POST create contact
 const createContact = async (req, res) => {
+  // #swagger.tags = ['Contacts'];
+  // #swagger.description = 'Create a new contact'
   const newContact = {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
@@ -47,6 +53,8 @@ const createContact = async (req, res) => {
 };
 // PUT update contact
 const updateContact = async (req, res) => {
+  // #swagger.tags = ['Contacts'];
+  // #swagger.description = 'Update a contact'
   const contactId = req.params.id;
   if (!ObjectId.isValid(contactId)) {
     return res.status(400).json({ error: 'Invalid contact ID format' });
@@ -78,6 +86,8 @@ const updateContact = async (req, res) => {
 
 // DELETE contact
 const deleteContact = async (req, res) => {
+  // #swagger.tags = ['Contacts'];
+  // #swagger.description = 'Delete a contact'
   const contactId = req.params.id;
   if (!ObjectId.isValid(contactId)) {
     return res.status(400).json({ error: 'Invalid contact ID format' });

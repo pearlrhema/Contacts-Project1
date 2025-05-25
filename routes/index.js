@@ -11,13 +11,16 @@ const createContact = require('../controllers/contacts').createContact;
 
 // const contacts = require('./contacts');
 
+router.use('/', require('./swagger'));
+
 router.get('/', (req, res) => {
+  // #swagger.tags = ['Godwin Essien Contacts Project']
   res.send('CSE341 - Godwin Essien Contacts Project');
 });
 
-router.use('/contacts', getAllContacts);
+// router.use('/contacts', getAllContacts);
 
-router.use('/createContacts', createContact);
+// router.use('/createContacts', createContact);
 
 module.exports = router;
 
