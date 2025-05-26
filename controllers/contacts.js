@@ -18,17 +18,17 @@ const getContactById = async (req, res) => {
   // #swagger.description = 'Get contact by ID'
   const contactId = req.params.id;
   if (!ObjectId.isValid(contactId)) {
-    return res.status(400).json({ error: 'Invalid contact ID format' });
+    return res.status(400).json({ error: 'Oops! That contact ID doesn’t look right. Please double-check it and try again.' });
   }
 
   try {
     const contact = await mongodb.getdatabase().db().collection("Contacts").findOne({ _id: new ObjectId(contactId) });
-    if (!contact) return res.status(404).json({ error: 'Contact not found' });
+    if (!contact) return res.status(404).json({ error: 'We couldn’t find a contact with that ID. Please check and try again.' });
 
     res.setHeader('Content-Type', 'application/json');
     res.status(200).json(contact);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ error: 'Something went wrong while retrieving the contact. Please try again later.' });
   }
 };
 
@@ -48,16 +48,17 @@ const createContact = async (req, res) => {
     const result = await mongodb.getdatabase().db().collection("Contacts").insertOne(newContact);
     res.status(201).json({ id: result.insertedId });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ error: 'We couldn’t save the new contact. Please try again later.' });
   }
 };
+
 // PUT update contact
 const updateContact = async (req, res) => {
   // #swagger.tags = ['Contacts'];
   // #swagger.description = 'Update a contact'
   const contactId = req.params.id;
   if (!ObjectId.isValid(contactId)) {
-    return res.status(400).json({ error: 'Invalid contact ID format' });
+    return res.status(400).json({ error: 'Hmm... The ID you provided seems off. Could you verify it and try updating again?' });
   }
 
   const updatedContact = {
@@ -75,12 +76,12 @@ const updateContact = async (req, res) => {
     );
 
     if (result.matchedCount === 0) {
-      return res.status(404).json({ error: 'Contact not found' });
+      return res.status(404).json({ error: 'We couldn’t find a contact with that ID. Please check and try again.' });
     }
 
     res.status(204).send();
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ error: 'Something went wrong while updating the contact. Please try again later.' });
   }
 };
 
@@ -90,19 +91,19 @@ const deleteContact = async (req, res) => {
   // #swagger.description = 'Delete a contact'
   const contactId = req.params.id;
   if (!ObjectId.isValid(contactId)) {
-    return res.status(400).json({ error: 'Invalid contact ID format' });
+    return res.status(400).json({ error: 'We couldn’t recognize that contact ID. Please check and try deleting again.' });
   }
 
   try {
     const result = await mongodb.getdatabase().db().collection("Contacts").deleteOne({ _id: new ObjectId(contactId) });
 
     if (result.deletedCount === 0) {
-      return res.status(404).json({ error: 'Contact not found' });
+      return res.status(404).json({ error: 'No contact found with the provided ID. Nothing was deleted.' });
     }
 
     res.status(204).send();
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ error: 'Something went wrong while deleting the contact. Please try again later.' });
   }
 };
 
